@@ -84,7 +84,7 @@ results_df['Actual'] = y_test
 results_df['Predicted'] = y_pred
 
 # Save the results to a CSV file
-output_file_path = r'D:\abnormalmeterProject\prediction_results.csv'
+output_file_path = r'D:\abnormalmeterProject\prediction_results_rdf.csv'
 results_df.to_csv(output_file_path, index=False)
 
 print(f"Prediction results saved to: {output_file_path}")

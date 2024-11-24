@@ -73,3 +73,17 @@ print(f"\nCross-Validation Accuracy: {cross_val_accuracy.mean():.2f}")
 model_path = r'D:\abnormalmeterProject\trained_model_xgb.pkl'
 joblib.dump(model, model_path)
 print(f"Model saved at: {model_path}")
+
+results_df = X_test.copy()
+
+# Add the additional columns (INSkey and period2)
+results_df['INSkey'] = data.loc[X_test.index, 'INSkey']
+results_df['period2'] = data.loc[X_test.index, 'period2']
+results_df['Actual'] = y_test
+results_df['Predicted'] = y_pred
+
+# Save the results to a CSV file
+output_file_path = r'D:\abnormalmeterProject\prediction_results_xgb.csv'
+results_df.to_csv(output_file_path, index=False)
+
+print(f"Prediction results saved to: {output_file_path}")

@@ -1,0 +1,2574 @@
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" style=""><head>
+        <meta charset="utf-8">
+        <title>U_CUBE-การไฟฟ้าส่วนภูมิภาค</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+        <meta content="Coderthemes" name="author">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- App favicon -->
+        <link rel="icon" href="/ucube/images/cube_logo_title.png" type="image/ico">
+		<link rel="stylesheet" href="/ucube/assets/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/ucube/assets/css/fonts.googleapis.com.css">
+		
+        <!-- App css -->
+        <link href="/ucube/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/ucube/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="/ucube/assets/css/style.css" rel="stylesheet" type="text/css">
+		<link rel="icon" href="/ucube/images/cube_logo_title.png" type="image/ico">
+		
+        <script src="/ucube/assets/js/modernizr.min.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/highcharts.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/modules/data.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/drilldown.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/modules/exporting.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/modules/export-data.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/highcharts-more.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/highcharts-3d.js"></script>
+		<script src="/ucube/assets/highcharts_610/code/drilldown.js"></script>
+		
+
+		
+<style>
+body {
+    margin: 0;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+    color: #797979;
+    font-size: 15px;
+    background-color: #e1e1e1;
+
+  
+}
+#topnav .navbar-custom {
+    background-color: rgba(255, 255, 255, 0.0);
+    //box-shadow: 0 1px 1px rgba(0, 0, 0, 0.0);
+	background: linear-gradient(to top, #388AE4, #388AE4)
+  }
+
+</style>	
+</head><body><div class="se-pre-con" style="display: none;"></div>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(/ucube/img/Preloader_4.gif) center no-repeat #fff;
+}
+</style>
+<script src="/ucube/assets/js/jquery-2.1.4.min.js"></script>
+<script src="/ucube/assets/js/modernizr.js"></script>
+<script>
+//paste this code under the head tag or in a separate js file.
+	// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});		
+
+</script>	<style>
+@import 'https://fonts.googleapis.com/css?family=Kanit|Prompt';
+table {
+    width: 100%;
+	border: 4px solid black;
+	font-size: 14px;
+	padding: 7px 7px;
+	margin-bottom: 0rem;
+}
+
+ th {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #a5cdf8;
+	font-family: 'Prompt', sans-serif;	
+}
+.th_1 {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #6BDBFE;
+	font-family: 'Prompt', sans-serif;	
+}
+.th_2 {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #FBC162;
+	font-family: 'Prompt', sans-serif;	
+}
+.th_3 {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #E7D75F;
+	font-family: 'Prompt', sans-serif;	
+}
+.th_4 {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #C5D872;
+	font-family: 'Prompt', sans-serif;	
+}
+ td {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;	
+}
+.td_1 {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;	
+}
+
+h4 {
+  color: black;
+  font-family: 'Prompt', sans-serif;
+}
+h5 {
+  color: black;
+  font-family: 'Prompt', sans-serif;
+}
+h6 {
+  color: black;
+}
+.h5_class {
+	color: white; 
+	font-family: 'Kanit', sans-serif;
+	font-size: 21px;
+}
+.h6_class {
+	color: white; 
+	font-family: 'Kanit', sans-serif;
+	font-size: 18px;
+}
+
+.normal_th {
+	color: white; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #a5cdf8;
+	
+}
+.normal2_th {
+	color: black;
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #a5cdf8;
+	
+}
+.normal3_th {
+	color: black; 
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 15px;
+	background-color: #a5cdf8;
+	font-family: 'Prompt', sans-serif;
+	
+}
+.f_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #ff9966;
+	
+}
+.a_phase_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: red;
+	
+}
+.b_phase_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: yellow;
+	
+}
+.c_phase_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: blue;
+	
+}
+.abc_phase_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #B7DDE8;
+	
+}
+.all_phase_th {
+    padding: 2px;
+    text-align: center;
+	border: 1px solid black;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #ccffff;	
+}
+td {
+    padding: 2px;
+	text-align: center;
+	border: 1px solid black;
+	font-size: 14px;
+	padding: 7px 12px;	
+}
+.red_tr {
+    padding: 2px;
+	font-size: 14px;
+	font-color: red;	
+}
+.peaname_td {
+    padding: 2px;
+	text-align: left;
+	border: 1px solid black;
+	font-size: 13px;
+}
+.peaname2_td {
+    padding: 2px;
+	text-align: left;
+	border: 1px solid black;
+	font-size: 14px;
+}
+.peaname3_td {
+    padding: 2px;
+	text-align: center;
+	border: 1px solid black;
+	font-size: 16px;	
+}
+.peaname4_td {
+    padding: 2px;
+	text-align: center;
+	border: 1px solid black;
+	font-size: 13px;	
+}
+.kwh_td {
+    padding: 2px;
+	text-align: right;
+	border: 1px solid black;
+	font-size: 14px;	
+}
+.stat_td {
+    padding: 2px;
+	border: 1px solid black;
+	font-size: 12px;	
+}
+.stat_right_td {
+    padding: 2px;
+	text-align: right;
+	border: 1px solid black;
+	font-size: 14px;	
+}
+
+@media print {
+  a[href]:after {
+    content: none
+  }
+}
+</style>
+
+
+    
+
+        <!-- Navigation Bar-->
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container-fluid">
+
+                    <!-- Logo container-->
+
+				
+                    <!-- Logo container-->
+                    <div class="logo">
+                        <!-- Text Logo -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--<span class="logo-small"><i class="mdi mdi-radar"></i></span>-->
+                            <!--<span class="logo-large"><i class="mdi mdi-radar"></i> Abstack</span>-->
+                        <!--</a>-->
+                        <!-- Image Logo -->
+                        <a href="/ucube/main.php" class="logo">
+                          
+                            <h5 class="h5_class"><img src="/ucube/images/cube_logo.png" alt="" height="68" class="logo-large">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;การไฟฟ้าส่วนภูมิภาค เขต 1 (ภาคกลาง) จ.พระนครศรีอยุธยา</h5>
+
+                        </a>
+
+                    </div>
+                    <!-- End Logo container-->                    <!-- End Logo container-->
+
+
+                    <div class="menu-extras topbar-custom">
+                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+                           
+                   
+                    <li class="dropdown notification-list hide-phone">
+								<a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">			
+                                    <img src="/ucube/icons/url-History-icon.png" style="width: 32px; height:32px;">&nbsp;<small>ประวัติเข้าดู</small> <i class="mdi mdi-chevron-down"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+
+                                    <!-- item-->
+                                   
+								
+                                   
+
+                                </div>
+                    </li>
+					<li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <img src="https://pictureapi.pea.co.th/MyphotoAPI/api/v1/Main/GetPicImg?EmpCode=505122&amp;Type=1&amp;SType=1" style="width: 49px; height:54px;" alt="user" class="rounded-circle">
+									<span class="ml-1 pro-user-name"><small>ณภัทร อนันตศิริรัตน์</small>
+									</span></a><a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+								  <i class="mdi mdi-chevron-down"></i>
+                                </a><a href="/ucube/main.php"><img src="/ucube/icons/house-icon.png" style="width: 26px; height: 26px;"></a>
+                            	
+                                
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h6 class="text-overflow m-0">ยินดีต้อนรับ !</h6>
+                                    </div>
+	
+                                    <!-- item-->
+                                    <a href="/ucube/main.php?r=A" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟน.1 - A</span>
+                                    </a>
+                                    <!-- item-->
+                                    <a href="/ucube/main.php?r=B" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟน.2 - B</span>
+                                    </a>
+									<a href="/ucube/main.php?r=C" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟน.3 - C</span>
+                                    </a>
+									<a href="/ucube/main.php?r=D" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟฉ.1 - D</span>
+                                    </a>
+									<a href="/ucube/main.php?r=E" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟฉ.2 - E</span>
+                                    </a>
+									<a href="/ucube/main.php?r=F" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟฉ.3 - F</span>
+                                    </a>
+									<a href="/ucube/main.php?r=G" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟก.1 - G</span>
+                                    </a>
+									<a href="/ucube/main.php?r=H" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟก.2 - H</span>
+                                    </a>
+									<a href="/ucube/main.php?r=I" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟก.3 - I</span>
+                                    </a>
+									<a href="/ucube/main.php?r=J" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟต.1 - J</span>
+                                    </a>
+									<a href="/ucube/main.php?r=K" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟต.2 - K</span>
+                                    </a>
+									<a href="/ucube/main.php?r=L" class="dropdown-item notify-item" style="padding: 1px 20px;">
+                                        <img src="/ucube/icons/data-table-icon.png"><span>&nbsp;&nbsp;กฟต.3 - L</span>
+                                    </a>
+                                    <!-- item-->
+                                    <a href="/ucube/logout.php" data-toggle="modal" data-target="#exampleModal">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/ucube/icons/logout2-icon.png">&nbsp;&nbsp;<span>ออกจากระบบ</span>
+                                    </a>
+                                </div>
+                            </li>						
+                            	        
+							
+							                        </ul>
+                    </div>
+                    <!-- end menu-extras -->
+
+                    <div class="clearfix"></div>
+
+                </div> <!-- end container -->
+            </div>
+            <!-- end topbar-main -->
+	
+	            <div class="navbar-custom" style="background-color: rgba(255, 255, 255 ,0.55);">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+                            <li class="has-submenu">
+							
+                               <a href="#"><font color="white" size="4"><i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>&nbsp;<small>1.- ตรวจสอบ/วิเคราะห์รหัสผิดปกติ</small></font></a>
+								<ul class="submenu">
+                                    <li><a href="/ucube/pages/uc101_search_customer.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.1- ค้นหาผู้ใช้ไฟ&nbsp;</a></li>
+                                    <li><a href="/ucube/pages/uc107_month_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.2- รหัสจดหน่วยผิดปกติแต่ละเดือน&nbsp;</a></li>
+				
+									<li><a href="/ucube/pages/uc102_unit_use.php " style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.3- รหัสจดหน่วยผิดปกติตามช่วงหน่วยการใช้ไฟ</a></li>
+									
+                                    <li><a href="/ucube/pages/uc105_noteread_continue.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.4- รหัสจดหน่วยผิดปกติติดต่อกันมากกว่า <font color="red"><b>1</b></font> เดือน</a></li>
+									<li><a href="/ucube/pages/uc108_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.5- รหัสจดหน่วยผิดปกติตามสายการจดหน่วย&nbsp;</a></li><a href="/ucube/pages/uc108_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc108_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc104_unit_increase.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.6- หน่วยเพิ่ม/ลดลงติดต่อกันมากกว่า <font color="red"><b>1</b></font>  เดือน</a></li>
+									<li><a href="/ucube/pages/uc107_big_customer_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.7- รายใหญ่หน่วยเพิ่ม/ลดผิดปกติ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="/ucube/pages/uc106_zero_unit_continue.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.8- ศูนย์หน่วยติดต่อกัน <font color="red"><b>3</b></font>  เดือน&nbsp;</a></li>
+									<li><a href="/ucube/pages/uc109_average_unit_continue.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.9- เฉลี่ยหน่วยมากกว่า <font color="red"><b>1</b></font>  เดือน</a></li>
+									<li><a href="/ucube/pages/uc110_not_average_unit.php" style="padding-top: 3px; padding-bottom: 3px;  font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.10- มิเตอร์ชำรุดไม่เฉลี่ยหน่วย</a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.11-ใบสั่งประเภท 10&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="/ucube/pages/uc112_unit_decrease_year.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.12- มิเตอร์ที่ใช้ไฟน้อยผิดปกติเปรียบเทียบปีก่อน&nbsp;&nbsp;</a></li><a href="/ucube/pages/uc112_unit_decrease_year.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc112_unit_decrease_year.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.13- ปริมาณบิลที่มีปัญหาแต่ละเดือน<font color="red">&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></font></a></li>
+									<li><a href="/ucube/pages/uc115_show_stat_unit1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.14- สถิติการใช้ไฟฟ้าแต่ละหน่วยงาน&nbsp;</a></li><a href="/ucube/pages/uc115_show_stat_unit1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc115_show_stat_unit1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc115_meter_order_dup.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.15- ปิดใบสั่งแล้วเปิดใหม่เดือนถัดไป&nbsp;</a></li><a href="/ucube/pages/uc115_meter_order_dup.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">     
+									</a><li><a href="/ucube/pages/uc115_meter_order_dup.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc116_hight_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">1.16- หน่วยการใช้ไฟสูงผิดปกติ&nbsp;</a></li><a href="/ucube/pages/uc116_hight_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">  		
+                                </a></ul><a href="/ucube/pages/uc116_hight_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+								
+								
+                            </a></li><a href="/ucube/pages/uc116_hight_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+							</a><li class="has-submenu"><a href="/ucube/pages/uc116_hight_unit.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+                                </a><a href="#"><font color="white" size="4"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;<small>2.- มิเตอร์ผิดปกติ &amp; Patrol &amp; MA</small></font></a>
+								<ul class="submenu">
+                                    <li><a href="/ucube/pages/uc201_show_audit_list_nnl1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.1- รายงานการตรวจสอบมิเตอร์&nbsp;</a></li><a href="/ucube/pages/uc201_show_audit_list_nnl1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+                                    </a><li><a href="/ucube/pages/uc201_show_audit_list_nnl1.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc202_show_audit_note_05.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.2- การตรวจสอบมิเตอร์ เฉพาะรหัส Patrol มิเตอร์ (05)&nbsp;</a></li><a href="/ucube/pages/uc202_show_audit_note_05.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+                                    </a><li><a href="/ucube/pages/uc202_show_audit_note_05.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc210_show_audit_plan.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.3- การตรวจสอบมิเตอร์ตามมาตรการลดหน่วยสูญเสีย&nbsp;</a></li><a href="/ucube/pages/uc210_show_audit_plan.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc210_show_audit_plan.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc111_meter_addnew.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.4- มิเตอร์ไม่มีประวัติการจดหน่วย (AddNew)</a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.5- ปรับปรุงค่าไฟ ค่าปรับ ค่ามิเตอร์ชำรุด&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+                                    <li><a href="/ucube/pages/uc403_customer_violation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;">2.6- บันทึกผู้ใช้ไฟฟ้าที่ตรวจพบการละเมิด/กลุ่มเสี่ยง&nbsp;</a></li><a href="/ucube/pages/uc403_customer_violation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;">
+									</a><li><a href="/ucube/pages/uc403_customer_violation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;"></a><a href="/ucube/pages/uc206_show_violation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.7- รายละเอียดประวัติผู้ใช้ไฟฟ้าที่ตรวจพบการละเมิด&nbsp;</a></li>
+									<li><a href="/ucube/pages/uc203_show_audit_activities_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.8- รายงานผลการตรวจสอบมิเตอร์ แบ่งตามสาเหตุการสั่ง&nbsp;</a></li><a href="/ucube/pages/uc203_show_audit_activities_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc203_show_audit_activities_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc208_close_audit_per_day.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.9- รายงานแสดงจำนวนการปิดใบสั่งตรวจสอบแต่ละวัน&nbsp;</a></li><a href="/ucube/pages/uc208_close_audit_per_day.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc208_close_audit_per_day.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.10- การปรับปรุงค่าไฟฟ้า ค่าปรับ กรณีมิเตอร์ชำรุด&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.11- การปรับปรุงค่าไฟฟ้า ค่าปรับละเมิด กรณีละเมิด&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="/ucube/pages/uc203_show_activities_plan.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">2.12- การตรวจสอบมิเตอร์ ตามแผนการลดหน่วยสูญเสีย Non-Technical loss&nbsp;<img src="/ucube/icons/new-icon.gif" width="45" height="20" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">----------------------- Security Lock Seal-------------------------</a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">LS ผมม.กบล จ่ายให้กฟฟ. กฟส.&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">LS ผมม/ผบค. จ่ายให้ผู้ปฏิบัติ กฟย.&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">LS ผู้ปฏิบัติบันทึกผล.&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">LS สอบถามสถานะการใช้งาน&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+								</ul>
+                            </li>
+							<li class="has-submenu">
+                                <a href="#"><font color="white" size="4"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;<small>3.- แผนที่ พิกัด &amp; ไฟสาธารณะ</small></font></a>
+								<ul class="submenu">
+                                    <li><a href="/ucube/pages/uc301_distance_2_ptc.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.1- พิกัดจดหน่วยห่างจากเดือนก่อนหน้า&nbsp;</a></li><a href="/ucube/pages/uc301_distance_2_ptc.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+                                    </a><li><a href="/ucube/pages/uc301_distance_2_ptc.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc302_mru_all_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.2- แผนที่ สายการจดหน่วย&nbsp;</a></li>
+									<li><a href="/ucube/pages/uc302_map_mru.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.3- แผนที่ จดหน่วยตาม Portion&nbsp;</a></li> 
+									<li><a href="/ucube/pages/uc304_show_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.4- แผนที่ มิเตอร์ที่มีรหัสผิดปกติ&nbsp;</a></li><a href="/ucube/pages/uc304_show_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+									</a><li><a href="/ucube/pages/uc304_show_mru_noteread.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc308_distance_ptc_gis.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.5- ระยะห่างระหว่าง PTC &amp; GIS เกินกำหนด&nbsp;&nbsp;</a></li><a href="/ucube/pages/uc308_distance_ptc_gis.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+									</a><li><a href="/ucube/pages/uc308_distance_ptc_gis.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc306_distance_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.6- ระยะห่างระหว่างมิเตอร์ &amp; หม้อแปลงเกินกำหนด&nbsp;</a></li><a href="/ucube/pages/uc306_distance_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+									</a><li><a href="/ucube/pages/uc306_distance_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">----------------ไฟสาธารณะ ไฟทางหลวง --------------</a></li> 
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.7- แฟ้มข้อมูลไฟสาธารณะ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li> 
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.8- งานสำรวจไฟสาธารณะ ไฟทางหลวง ดวงโคม&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li> 
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.9- แผนที่โคมไฟ มิเตอร์ไฟสาธารณะ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li> 
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">3.10- ใบสั่ง ติดตามผล การตรวจสอบ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li> 
+									
+								</ul>
+                            </li>
+							<li class="has-submenu last-elements">
+                                <a href="#"><font color="white" size="4"><i class="fa fa-clipboard" aria-hidden="true"></i>&nbsp;<small>4.-Loss Management </small></font></a>
+								<ul class="submenu">
+                                    <li><a href="/ucube/pages/uc401_search_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.1- ค้นหาหม้อแปลง&nbsp;</a></li><a href="/ucube/pages/uc401_search_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									<!--
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='black'">4.2- สถานการจ่ายไฟแต่ละหม้อแปลงตามสถานีจ่ายไฟ&nbsp;<img src="/ucube/icons/settings.png" width='18' height='18' border="0" alt=""></a></li> 
+									-->
+									</a><li><a href="/ucube/pages/uc401_search_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc404_substation_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.2- รายงานแสดงหม้อแปลงที่ติดตั้งแต่ละสถานีไฟฟ้า&nbsp;</a></li><a href="/ucube/pages/uc404_substation_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+									
+									</a><li><a href="/ucube/pages/uc404_substation_2_tfm.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc301_loss_feeder_substation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.3- หน่วยสูญเสียแต่ละ Feeder สถานีจ่ายไฟ&nbsp;</a></li><a href="/ucube/pages/uc301_loss_feeder_substation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc301_loss_feeder_substation.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="/ucube/pages/uc3011_find_dummy.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.4- หน่วยการใช้ไฟที่ไม่ระบุหม้อแปลง&nbsp;</a></li><a href="/ucube/pages/uc3011_find_dummy.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+                                    
+									
+									</a><li><a href="/ucube/pages/uc3011_find_dummy.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.6- Master สถานีจ่ายไฟ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.7-  Master Feeder แต่ละสถานีจ่ายไฟ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.8- Master VSPP&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.9- Master Meter EGAT&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.10- Master Swicth Transfer&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.11- Master มิเตอร์แบ่งแดน&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="/ucube/pages/uc401_input_unit_buy.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.10- บันทึกข้อมูลหน่วยซื้อ ประจำเดือน</a></li>
+									<li><a href="/ucube/pages/uc402_input_tech_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">4.13- บันทึกค่า Technical Loss ประจำเดือน&nbsp;</a></li><a href="/ucube/pages/uc402_input_tech_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"> 
+									</a><li><a href="/ucube/pages/uc402_input_tech_loss.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" <!--="" ucube="" pages="" uc301_loss_feeder_peaoffice.php="" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'" --="">4.15- สรุปหน่วยสูญเสียแต่ละ Feeder-แบ่งตามการไฟฟ้า<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li> 
+									
+									
+								
+                            
+							</ul>
+							</li><li class="has-submenu last-elements">
+                                <a href="#"><font color="white" size="4"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;<small>5.- รายงาน &amp; Kpi &amp; Utility</small></font></a>
+								<ul class="submenu">
+                                    <li><a href="/ucube/pages/uc204_show_kpi.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.1- รายงานแสดงคะแนน KPI NL1 NL2</a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.2- รายงานแสดงคะแนน KPI NL3&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="/ucube/pages/uc210_show_return_unit_all.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.3- รายละเอียดจำนวนหน่วยการใช้ไฟฟ้าที่ได้กลับคืนมา&nbsp;</a></li><a href="/ucube/pages/uc210_show_return_unit_all.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">
+									</a><li><a href="/ucube/pages/uc210_show_return_unit_all.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'"></a><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.4- รายงานค่าละเมิด(ปรับปรุงค่าไฟ ค่าละเมิด)&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.5- รายงานหน่วยสูญเสียแต่ละ กฟฟ.&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.6- รายงาน 10 มาตราการด้าน Non-Technical Loss;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">------------------อรรถประโยชน์-----------------</a></li> 
+																		
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.7- คู่มือการใช้งาน&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.8- ตอบคำถาม&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									
+									<li><a href="/ucube/pages/uc502_collect_survey.php" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.9- แบบสอบถามออนไลน์&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.10- องค์ความรู้ OPL ในระบบ U_CUBE&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">------------------การตั้งค่าโปรแกรม-----------------</a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.11- ตั้งค่า % Load Transformer&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+									<li><a href="#" style="padding-top: 3px; padding-bottom: 3px; font-size: 14px;" onmouseover="this.style.color='black'" onmouseout="this.style.color='black'">5.12- ตั้งค่าขั้นต้นหน่วยลดผิดปกติ&nbsp;<img src="/ucube/icons/settings.png" width="18" height="18" border="0" alt=""></a></li>
+								</ul>
+                            </li>
+                        </ul>
+                        <!-- End navigation menu -->
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+					        </header>
+        <!-- End Navigation Bar-->
+        <div class="wrapper"><!-- start wrapper 1111111111111 -->
+            <div class="container-fluid">
+              
+                <div class="row"><!-- Page-Title 1111111111 -->
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="btn-group pull-right">
+                            </div>
+						</div>
+                <!-- end page title end breadcrumb -->
+<!--รายละเอียด-->		
+				<div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box">
+							<div align="right">
+						<a href="export/export_uc201_detail_show_audit_nnl1.php?pea=G18101&amp;n=100&amp;s=F&amp;year=2025						&amp;month=0" target="_blank">
+						
+						<img src="../icons/ms_excel_icon.png" width="32" height="32" border="0" alt=""></a>&nbsp;
+						</div>
+						<div class="row">
+                             <div class="col-sm-12" align="center">
+
+<h4>
+
+รายงานผลการตรวจสอบมิเตอร์ สถานะ <font color="red">มีผลการตรวจสอบแล้ว</font> &nbsp;&nbsp;<font color="red"></font>
+
+	<br>หน่วยงาน&nbsp;:&nbsp;<font color="red">การไฟฟ้าอำเภอวังน้อย                              </font></h4><br>
+		
+<div style="overflow-y: scroll; width: 95% " align="center">  
+<table style="margin-bottom: 0px;" class="table  table-bordered table-hover" id="table">
+	<tbody><tr>
+	<th width="5%" align="center">ลำดับที่</th>
+	<th width="15%" align="center">เลขที่ใบสั่ง</th>
+	<th width="10%" align="center">วันที่สั่ง</th>
+	<th width="10%" align="center">MRU</th>
+	<th width="11%" align="center">PEANo.</th>
+	<th width="13%" align="center">หมายเลข Installation</th>
+	<th width="17%" align="center">ชื่อผู้ใช้ไฟฟ้า</th>
+	<th width="11%">รายละเอียด</th>
+	</tr>
+</tbody></table>
+</div>
+<div style="height: 360px; overflow-y: scroll; width: 95%">  
+<table style="margin-bottom: 0px;" class="table  table-bordered table-hover" id="table">
+	
+		<tbody><tr>
+		<td width="5%">1
+		</td><td width="15%">&nbsp;&nbsp;2025016017667142&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;13/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0325&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30189801</td>
+		<td width="13%">&nbsp;&nbsp;6017667142</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017667142		&amp;ca=020017813355" target="_blank">นาย บุญมี ดอนสีดา</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016017667142		&amp;i2=6017667142&amp;ca=020017813355" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">2
+		</td><td width="15%">&nbsp;&nbsp;2025016021919096&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;13/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0370&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6101065602</td>
+		<td width="13%">&nbsp;&nbsp;6021919096</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6021919096		&amp;ca=020023129183" target="_blank">นาย ไพรวัลย์ คำประภา</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016021919096		&amp;i2=6021919096&amp;ca=020023129183" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">3
+		</td><td width="15%">&nbsp;&nbsp;2025026000194970&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0136&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5701186037</td>
+		<td width="13%">&nbsp;&nbsp;6000194970</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000194970		&amp;ca=020000584698" target="_blank">นาง ประชุม โชติแสงแก้ว</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000194970		&amp;i2=6000194970&amp;ca=020000584698" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">4
+		</td><td width="15%">&nbsp;&nbsp;2025026000350805&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0094&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;24497915  </td>
+		<td width="13%">&nbsp;&nbsp;6000350805</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000350805		&amp;ca=020000449502" target="_blank">นาย ทองอยู่ จำนงค์คิด</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000350805		&amp;i2=6000350805&amp;ca=020000449502" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">5
+		</td><td width="15%">&nbsp;&nbsp;2025026000435855&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0065&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5701350474</td>
+		<td width="13%">&nbsp;&nbsp;6000435855</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000435855		&amp;ca=020000357338" target="_blank">นาย ยนต์ ศรีเรือง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000435855		&amp;i2=6000435855&amp;ca=020000357338" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">6
+		</td><td width="15%">&nbsp;&nbsp;2025026001302715&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0185&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5801021896</td>
+		<td width="13%">&nbsp;&nbsp;6001302715</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001302715		&amp;ca=020001404748" target="_blank">นางสาว อุไรพร ธูปอัคนี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026001302715		&amp;i2=6001302715&amp;ca=020001404748" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">7
+		</td><td width="15%">&nbsp;&nbsp;2025026017595557&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0324&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30160931  </td>
+		<td width="13%">&nbsp;&nbsp;6017595557</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017595557		&amp;ca=020017733729" target="_blank">นางสาว สุดารัตน์ ไชยแสง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026017595557		&amp;i2=6017595557&amp;ca=020017733729" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">8
+		</td><td width="15%">&nbsp;&nbsp;2025026017614544&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0327&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30160996</td>
+		<td width="13%">&nbsp;&nbsp;6017614544</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017614544		&amp;ca=020017753606" target="_blank">นาย ทิวา ปิยะสิงห์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026017614544		&amp;i2=6017614544&amp;ca=020017753606" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">9
+		</td><td width="15%">&nbsp;&nbsp;2025026018247453&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0324&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28224898  </td>
+		<td width="13%">&nbsp;&nbsp;6018247453</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018247453		&amp;ca=020024002239" target="_blank">นาย วัชระ พันธ์ฆ้อง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026018247453		&amp;i2=6018247453&amp;ca=020024002239" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">10
+		</td><td width="15%">&nbsp;&nbsp;2025026022531568&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0002&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6201048299</td>
+		<td width="13%">&nbsp;&nbsp;6022531568</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6022531568		&amp;ca=020023445507" target="_blank">องค์การบริหารส่วนตำบลสามเรือน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026022531568		&amp;i2=6022531568&amp;ca=020023445507" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">11
+		</td><td width="15%">&nbsp;&nbsp;2025026022926963&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0449&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30245871</td>
+		<td width="13%">&nbsp;&nbsp;6022926963</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6022926963		&amp;ca=020023946833" target="_blank">นางสาว พนอ ศรีสุวรรณ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026022926963		&amp;i2=6022926963&amp;ca=020023946833" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">12
+		</td><td width="15%">&nbsp;&nbsp;2025026017834848&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0322&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30186956  </td>
+		<td width="13%">&nbsp;&nbsp;6017834848</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017834848		&amp;ca=020025083604" target="_blank">นาง อรวรรณ สุขเจริญ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026017834848		&amp;i2=6017834848&amp;ca=020025083604" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">13
+		</td><td width="15%">&nbsp;&nbsp;2025026018053464&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;14/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0322&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30191009  </td>
+		<td width="13%">&nbsp;&nbsp;6018053464</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018053464		&amp;ca=020018240414" target="_blank">นางสาว ศศิมาพร สันติธรารักษ์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026018053464		&amp;i2=6018053464&amp;ca=020018240414" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">14
+		</td><td width="15%">&nbsp;&nbsp;2025026021144334&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;15/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0400&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;26168656  </td>
+		<td width="13%">&nbsp;&nbsp;6021144334</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6021144334		&amp;ca=020021768754" target="_blank">นาย ชิณณวรรธน์ งามสมเสน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026021144334		&amp;i2=6021144334&amp;ca=020021768754" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">15
+		</td><td width="15%">&nbsp;&nbsp;2025026003536117&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;15/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0177&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;25712292  </td>
+		<td width="13%">&nbsp;&nbsp;6003536117</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6003536117		&amp;ca=020003630695" target="_blank">นางสาว วีรญา ทองมาก</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026003536117		&amp;i2=6003536117&amp;ca=020003630695" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">16
+		</td><td width="15%">&nbsp;&nbsp;2025026000596667&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;15/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0022&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6001069735</td>
+		<td width="13%">&nbsp;&nbsp;6000596667</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000596667		&amp;ca=020000128564" target="_blank">นาย สำราญ ผ่องศรี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000596667		&amp;i2=6000596667&amp;ca=020000128564" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">17
+		</td><td width="15%">&nbsp;&nbsp;2025026016631804&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;16/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0003&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28156834  </td>
+		<td width="13%">&nbsp;&nbsp;6016631804</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6016631804		&amp;ca=020016668712" target="_blank">องค์การบริหารส่วนตำบลสามเรือน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026016631804		&amp;i2=6016631804&amp;ca=020016668712" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">18
+		</td><td width="15%">&nbsp;&nbsp;2025026017795309&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;16/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0332&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30191029  </td>
+		<td width="13%">&nbsp;&nbsp;6017795309</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017795309		&amp;ca=020017954950" target="_blank">นางสาว โศรดา อุทะจันทร์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026017795309		&amp;i2=6017795309&amp;ca=020017954950" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">19
+		</td><td width="15%">&nbsp;&nbsp;2025026017834600&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;16/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0331&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30191263  </td>
+		<td width="13%">&nbsp;&nbsp;6017834600</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017834600		&amp;ca=020021446657" target="_blank">นางสาว จำเนียร นาชีวะ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026017834600		&amp;i2=6017834600&amp;ca=020021446657" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">20
+		</td><td width="15%">&nbsp;&nbsp;2025016020764583&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0363&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6000191097</td>
+		<td width="13%">&nbsp;&nbsp;6020764583</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6020764583		&amp;ca=020021347618" target="_blank">นางสาว สุธิษา สิหิง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016020764583		&amp;i2=6020764583&amp;ca=020021347618" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">21
+		</td><td width="15%">&nbsp;&nbsp;2025016000432141&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0067&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;22168320  </td>
+		<td width="13%">&nbsp;&nbsp;6000432141</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000432141		&amp;ca=020000361125" target="_blank">นาง ลำจวน เชาว์วิเศษ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000432141		&amp;i2=6000432141&amp;ca=020000361125" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">22
+		</td><td width="15%">&nbsp;&nbsp;2025016000642117&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0008&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5700926427</td>
+		<td width="13%">&nbsp;&nbsp;6000642117</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000642117		&amp;ca=020000055359" target="_blank">นาง บุญล้อม ศรศิลป์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000642117		&amp;i2=6000642117&amp;ca=020000055359" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">23
+		</td><td width="15%">&nbsp;&nbsp;2025026000419148&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0072&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5800994315</td>
+		<td width="13%">&nbsp;&nbsp;6000419148</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000419148		&amp;ca=020000373225" target="_blank">นางสาว อุลัย ตรีวุฒิ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000419148		&amp;i2=6000419148&amp;ca=020000373225" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">24
+		</td><td width="15%">&nbsp;&nbsp;2025026018099669&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0338&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28224849  </td>
+		<td width="13%">&nbsp;&nbsp;6018099669</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018099669		&amp;ca=020018290994" target="_blank">นาง รัตนา จันทร์ทาโล</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026018099669		&amp;i2=6018099669&amp;ca=020018290994" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">25
+		</td><td width="15%">&nbsp;&nbsp;2025036000214983&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0124&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;29431632  </td>
+		<td width="13%">&nbsp;&nbsp;6000214983</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000214983		&amp;ca=020000569137" target="_blank">นาย สังวอน ตู้แก้ว</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000214983		&amp;i2=6000214983&amp;ca=020000569137" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">26
+		</td><td width="15%">&nbsp;&nbsp;2025036000648441&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0006&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;22084515  </td>
+		<td width="13%">&nbsp;&nbsp;6000648441</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000648441		&amp;ca=020000042482" target="_blank">นาย ประเสริฐ ไวยบุญมา</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000648441		&amp;i2=6000648441&amp;ca=020000042482" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">27
+		</td><td width="15%">&nbsp;&nbsp;2025036017632986&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;17/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0324&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30189762</td>
+		<td width="13%">&nbsp;&nbsp;6017632986</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017632986		&amp;ca=020017771957" target="_blank">นาย กนกเกียรติ คงสิทธิโชค</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036017632986		&amp;i2=6017632986&amp;ca=020017771957" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">28
+		</td><td width="15%">&nbsp;&nbsp;2025016000668852&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;18/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0001&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;27510956  </td>
+		<td width="13%">&nbsp;&nbsp;6000668852</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000668852		&amp;ca=020000003467" target="_blank">นาย โสภณ รื่นรส</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000668852		&amp;i2=6000668852&amp;ca=020000003467" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">29
+		</td><td width="15%">&nbsp;&nbsp;2025026000502405&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;18/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0046&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;21345073  </td>
+		<td width="13%">&nbsp;&nbsp;6000502405</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000502405		&amp;ca=020000268688" target="_blank">นางสาว เพลิน พุ่มพวง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000502405		&amp;i2=6000502405&amp;ca=020000268688" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">30
+		</td><td width="15%">&nbsp;&nbsp;2025036016304009&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;18/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0174&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5800994262</td>
+		<td width="13%">&nbsp;&nbsp;6016304009</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6016304009		&amp;ca=020020155900" target="_blank">นาย จตุรงค์ ดวงทิพย์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036016304009		&amp;i2=6016304009&amp;ca=020020155900" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">31
+		</td><td width="15%">&nbsp;&nbsp;2025016003537541&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0003&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28211817  </td>
+		<td width="13%">&nbsp;&nbsp;6003537541</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6003537541		&amp;ca=020003630954" target="_blank">นาย ทัศนัย ภาคนาม</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016003537541		&amp;i2=6003537541&amp;ca=020003630954" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">32
+		</td><td width="15%">&nbsp;&nbsp;2025016000227173&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0121&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;20183790  </td>
+		<td width="13%">&nbsp;&nbsp;6000227173</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000227173		&amp;ca=020000560403" target="_blank">นาย เอกอมร สุขวิระกิจ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000227173		&amp;i2=6000227173&amp;ca=020000560403" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">33
+		</td><td width="15%">&nbsp;&nbsp;2025016017413123&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0195&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30033711  </td>
+		<td width="13%">&nbsp;&nbsp;6017413123</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017413123		&amp;ca=020017532332" target="_blank">นาย ทรงฤทธิ์ ตรีไพบูลย์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016017413123		&amp;i2=6017413123&amp;ca=020017532332" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">34
+		</td><td width="15%">&nbsp;&nbsp;2025016021841446&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0437&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6100897234</td>
+		<td width="13%">&nbsp;&nbsp;6021841446</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6021841446		&amp;ca=020022614346" target="_blank">นาย ณรงค์ เล็มบารอฮีม</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016021841446		&amp;i2=6021841446&amp;ca=020022614346" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">35
+		</td><td width="15%">&nbsp;&nbsp;2025016017904465&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0333&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30187165  </td>
+		<td width="13%">&nbsp;&nbsp;6017904465</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017904465		&amp;ca=020018072045" target="_blank">นางสาว วาสนา หนูประเสริฐ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016017904465		&amp;i2=6017904465&amp;ca=020018072045" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">36
+		</td><td width="15%">&nbsp;&nbsp;2025026000499641&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0047&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30246017  </td>
+		<td width="13%">&nbsp;&nbsp;6000499641</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000499641		&amp;ca=020000274959" target="_blank">นาย อำนวย ท่าหิน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000499641		&amp;i2=6000499641&amp;ca=020000274959" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">37
+		</td><td width="15%">&nbsp;&nbsp;2025026001157417&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0154&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;27608366  </td>
+		<td width="13%">&nbsp;&nbsp;6001157417</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001157417		&amp;ca=020017971424" target="_blank">นางสาว พิมพ์ศา โชคธนไชยรัตน์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026001157417		&amp;i2=6001157417&amp;ca=020017971424" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">38
+		</td><td width="15%">&nbsp;&nbsp;2025036017795610&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;19/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0331&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30246065  </td>
+		<td width="13%">&nbsp;&nbsp;6017795610</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017795610		&amp;ca=020027835482" target="_blank">นาย สมชาย ตรรกชนชูชัย</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036017795610		&amp;i2=6017795610&amp;ca=020027835482" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">39
+		</td><td width="15%">&nbsp;&nbsp;2025016018206283&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0337&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28211821  </td>
+		<td width="13%">&nbsp;&nbsp;6018206283</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018206283		&amp;ca=020025263284" target="_blank">นาย สุจินต์ บุญต่อ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016018206283		&amp;i2=6018206283&amp;ca=020025263284" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">40
+		</td><td width="15%">&nbsp;&nbsp;2025016000397214&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0079&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28191038  </td>
+		<td width="13%">&nbsp;&nbsp;6000397214</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000397214		&amp;ca=020000396716" target="_blank">นาง ม้วน ศักดิ์พวงมี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000397214		&amp;i2=6000397214&amp;ca=020000396716" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">41
+		</td><td width="15%">&nbsp;&nbsp;2025026001302055&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0180&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;24499688</td>
+		<td width="13%">&nbsp;&nbsp;6001302055</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001302055		&amp;ca=020001405671" target="_blank">นาย นำชัย แซ่จิว</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026001302055		&amp;i2=6001302055&amp;ca=020001405671" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">42
+		</td><td width="15%">&nbsp;&nbsp;2025026000483338&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0054&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;90049190  </td>
+		<td width="13%">&nbsp;&nbsp;6000483338</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000483338		&amp;ca=020000296942" target="_blank">นาง จำรัส ยิ้มแย้ม</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000483338		&amp;i2=6000483338&amp;ca=020000296942" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">43
+		</td><td width="15%">&nbsp;&nbsp;2025026000549313&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0032&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28565465  </td>
+		<td width="13%">&nbsp;&nbsp;6000549313</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000549313		&amp;ca=020017167673" target="_blank">นาง ละออ บุญธรรม</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000549313		&amp;i2=6000549313&amp;ca=020017167673" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">44
+		</td><td width="15%">&nbsp;&nbsp;2025036018378230&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0341&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5700278557</td>
+		<td width="13%">&nbsp;&nbsp;6018378230</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018378230		&amp;ca=020018596360" target="_blank">นางสาว กลมทิพย์ ติ่งทับ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036018378230		&amp;i2=6018378230&amp;ca=020018596360" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">45
+		</td><td width="15%">&nbsp;&nbsp;2025036000656469&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0005&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5800994276</td>
+		<td width="13%">&nbsp;&nbsp;6000656469</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000656469		&amp;ca=020000029913" target="_blank">นางสาว สมโภช รื่นถ้อย</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000656469		&amp;i2=6000656469&amp;ca=020000029913" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">46
+		</td><td width="15%">&nbsp;&nbsp;2025036000528671&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0041&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28333183  </td>
+		<td width="13%">&nbsp;&nbsp;6000528671</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000528671		&amp;ca=020000232623" target="_blank">นาง ไพจิตร ดีฉาย</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000528671		&amp;i2=6000528671&amp;ca=020000232623" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">47
+		</td><td width="15%">&nbsp;&nbsp;2025036020361931&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;20/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0404&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;27893650  </td>
+		<td width="13%">&nbsp;&nbsp;6020361931</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6020361931		&amp;ca=020020866591" target="_blank">นาย นพพร จั่นวงศ์แก้ว</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036020361931		&amp;i2=6020361931&amp;ca=020020866591" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">48
+		</td><td width="15%">&nbsp;&nbsp;2025016000405915&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0077&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6100270048</td>
+		<td width="13%">&nbsp;&nbsp;6000405915</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000405915		&amp;ca=020000390269" target="_blank">นาง เฉลียว รื่นภาค</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000405915		&amp;i2=6000405915&amp;ca=020000390269" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">49
+		</td><td width="15%">&nbsp;&nbsp;2025016000586175&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0024&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;24325936  </td>
+		<td width="13%">&nbsp;&nbsp;6000586175</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000586175		&amp;ca=020000142621" target="_blank">นาง ชลอ ใจเพ็ชร</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000586175		&amp;i2=6000586175&amp;ca=020000142621" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">50
+		</td><td width="15%">&nbsp;&nbsp;2025016000617537&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0014&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;17562979  </td>
+		<td width="13%">&nbsp;&nbsp;6000617537</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000617537		&amp;ca=020000092175" target="_blank">นาย สมบัติ โอสถ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000617537		&amp;i2=6000617537&amp;ca=020000092175" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">51
+		</td><td width="15%">&nbsp;&nbsp;2025016016954697&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0046&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28232527  </td>
+		<td width="13%">&nbsp;&nbsp;6016954697</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6016954697		&amp;ca=020017029695" target="_blank">นาง วาสนา แสงมณี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016016954697		&amp;i2=6016954697&amp;ca=020017029695" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">52
+		</td><td width="15%">&nbsp;&nbsp;2025016001184061&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0154&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;25093399</td>
+		<td width="13%">&nbsp;&nbsp;6001184061</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001184061		&amp;ca=020017344535" target="_blank">นางสาว นงคราญ วงศ์วาท</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016001184061		&amp;i2=6001184061&amp;ca=020017344535" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">53
+		</td><td width="15%">&nbsp;&nbsp;2025016018211447&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0014&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28224835  </td>
+		<td width="13%">&nbsp;&nbsp;6018211447</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018211447		&amp;ca=020018412071" target="_blank">นาง เพลินตา จูสนิท</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016018211447		&amp;i2=6018211447&amp;ca=020018412071" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">54
+		</td><td width="15%">&nbsp;&nbsp;2025016022609436&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0447&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6300081592</td>
+		<td width="13%">&nbsp;&nbsp;6022609436</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6022609436		&amp;ca=020027686208" target="_blank">นางสาว อรวรรณ รุ่งเรือง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016022609436		&amp;i2=6022609436&amp;ca=020027686208" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">55
+		</td><td width="15%">&nbsp;&nbsp;2025026000085114&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0155&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;19697277</td>
+		<td width="13%">&nbsp;&nbsp;6000085114</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000085114		&amp;ca=020000667150" target="_blank">นาง ผ่องศรี ศรีบุญปั๋น</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000085114		&amp;i2=6000085114&amp;ca=020000667150" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">56
+		</td><td width="15%">&nbsp;&nbsp;2025026000461116&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0057&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;27894005  </td>
+		<td width="13%">&nbsp;&nbsp;6000461116</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000461116		&amp;ca=020000322508" target="_blank">ร.ร.วัดวงษ์สวรรค์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000461116		&amp;i2=6000461116&amp;ca=020000322508" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">57
+		</td><td width="15%">&nbsp;&nbsp;2025026018541055&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0217&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28334052</td>
+		<td width="13%">&nbsp;&nbsp;6018541055</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018541055		&amp;ca=020001130977" target="_blank">องค์การบริหารส่วนตำบลสนับทึบ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026018541055		&amp;i2=6018541055&amp;ca=020001130977" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">58
+		</td><td width="15%">&nbsp;&nbsp;2025026019395954&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0092&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;28333197  </td>
+		<td width="13%">&nbsp;&nbsp;6019395954</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6019395954		&amp;ca=020019766334" target="_blank">นางสาว นิภาพร คุ้มจันทร์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026019395954		&amp;i2=6019395954&amp;ca=020019766334" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">59
+		</td><td width="15%">&nbsp;&nbsp;2025036018618711&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;21/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0174&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5700732362</td>
+		<td width="13%">&nbsp;&nbsp;6018618711</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6018618711		&amp;ca=020018870337" target="_blank">นาย สุรสิทธิ์ จันทร์ดวง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036018618711		&amp;i2=6018618711&amp;ca=020018870337" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">60
+		</td><td width="15%">&nbsp;&nbsp;2025016001300311&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0175&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;24499488</td>
+		<td width="13%">&nbsp;&nbsp;6001300311</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001300311		&amp;ca=020001403324" target="_blank">นาย ทเวศน์ ชูอินทร์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016001300311		&amp;i2=6001300311&amp;ca=020001403324" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">61
+		</td><td width="15%">&nbsp;&nbsp;2025016000260380&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0113&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6100269983</td>
+		<td width="13%">&nbsp;&nbsp;6000260380</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000260380		&amp;ca=020000535396" target="_blank">นาย สกล วงษ์ดี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000260380		&amp;i2=6000260380&amp;ca=020000535396" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">62
+		</td><td width="15%">&nbsp;&nbsp;2025026000203947&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0127&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5800995120</td>
+		<td width="13%">&nbsp;&nbsp;6000203947</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000203947		&amp;ca=020000578286" target="_blank">นางสาว ประจวบ เหมือนแม้น</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000203947		&amp;i2=6000203947&amp;ca=020000578286" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">63
+		</td><td width="15%">&nbsp;&nbsp;2025026000560566&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0030&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;16686737  </td>
+		<td width="13%">&nbsp;&nbsp;6000560566</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000560566		&amp;ca=020000187482" target="_blank">นาย ยศ คุ้มพิทักษ์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000560566		&amp;i2=6000560566&amp;ca=020000187482" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">64
+		</td><td width="15%">&nbsp;&nbsp;2025036000495050&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0049&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;17157712  </td>
+		<td width="13%">&nbsp;&nbsp;6000495050</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000495050		&amp;ca=020000280419" target="_blank">นาย พินิจ สร้างเขต</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000495050		&amp;i2=6000495050&amp;ca=020000280419" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">65
+		</td><td width="15%">&nbsp;&nbsp;2025036000389976&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;22/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0083&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6600166946</td>
+		<td width="13%">&nbsp;&nbsp;6000389976</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000389976		&amp;ca=020000402121" target="_blank"> พระอธิการ เคน สนูตจิตโต</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000389976		&amp;i2=6000389976&amp;ca=020000402121" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">66
+		</td><td width="15%">&nbsp;&nbsp;2025016000180892&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;23/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0138&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30187480  </td>
+		<td width="13%">&nbsp;&nbsp;6000180892</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000180892		&amp;ca=020000594522" target="_blank">นาง วดี ชัยสงคราม</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000180892		&amp;i2=6000180892&amp;ca=020000594522" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">67
+		</td><td width="15%">&nbsp;&nbsp;2025026000242745&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;23/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0118&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;19662021  </td>
+		<td width="13%">&nbsp;&nbsp;6000242745</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000242745		&amp;ca=020000547579" target="_blank"> จ.ส.ต.กัมพล เมษมาน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000242745		&amp;i2=6000242745&amp;ca=020000547579" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">68
+		</td><td width="15%">&nbsp;&nbsp;2025016000330828&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;24/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0097&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30190875  </td>
+		<td width="13%">&nbsp;&nbsp;6000330828</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000330828		&amp;ca=020000469616" target="_blank">นาง ชูชีพ ฤกษ์วิรี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000330828		&amp;i2=6000330828&amp;ca=020000469616" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">69
+		</td><td width="15%">&nbsp;&nbsp;2025016000334527&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;24/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0096&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30187550  </td>
+		<td width="13%">&nbsp;&nbsp;6000334527</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000334527		&amp;ca=020000464007" target="_blank">นาย ห่อ คงแสง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000334527		&amp;i2=6000334527&amp;ca=020000464007" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">70
+		</td><td width="15%">&nbsp;&nbsp;2025026000447592&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;24/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0062&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6201044784</td>
+		<td width="13%">&nbsp;&nbsp;6000447592</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000447592		&amp;ca=020027448480" target="_blank">นางสาว พรรณธิวา สิงห์สวัสดิ์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000447592		&amp;i2=6000447592&amp;ca=020027448480" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">71
+		</td><td width="15%">&nbsp;&nbsp;2025036021737117&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;24/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0433&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6300940048</td>
+		<td width="13%">&nbsp;&nbsp;6021737117</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6021737117		&amp;ca=020025824619" target="_blank">นางสาว สุกัญญา จันทศร</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036021737117		&amp;i2=6021737117&amp;ca=020025824619" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">72
+		</td><td width="15%">&nbsp;&nbsp;2025016010709174&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;25/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0186&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;27210461  </td>
+		<td width="13%">&nbsp;&nbsp;6010709174</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6010709174		&amp;ca=020010734724" target="_blank">นางสาว พัชรี ยาแก้ว</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016010709174		&amp;i2=6010709174&amp;ca=020010734724" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">73
+		</td><td width="15%">&nbsp;&nbsp;2025016000367898&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0091&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6200378598</td>
+		<td width="13%">&nbsp;&nbsp;6000367898</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000367898		&amp;ca=020001344456" target="_blank">นางสาว ขวัญตา ประสบเหมาะ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016000367898		&amp;i2=6000367898&amp;ca=020001344456" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">74
+		</td><td width="15%">&nbsp;&nbsp;2025036000463535&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0057&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30215617</td>
+		<td width="13%">&nbsp;&nbsp;6000463535</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000463535		&amp;ca=020000320472" target="_blank">นางสาว สำรวย สุทธิฤก</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000463535		&amp;i2=6000463535&amp;ca=020000320472" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">75
+		</td><td width="15%">&nbsp;&nbsp;2025036000256648&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0113&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;20839490</td>
+		<td width="13%">&nbsp;&nbsp;6000256648</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000256648		&amp;ca=020000535978" target="_blank">นางสาว อัญชลี สิงห์สาร</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000256648		&amp;i2=6000256648&amp;ca=020000535978" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">76
+		</td><td width="15%">&nbsp;&nbsp;2025036000383417&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0085&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6600185914</td>
+		<td width="13%">&nbsp;&nbsp;6000383417</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000383417		&amp;ca=020000410377" target="_blank">นาย อุดมทรัพย์ สุขเกิดผล</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000383417		&amp;i2=6000383417&amp;ca=020000410377" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">77
+		</td><td width="15%">&nbsp;&nbsp;2025036000161779&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0141&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6101136176</td>
+		<td width="13%">&nbsp;&nbsp;6000161779</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000161779		&amp;ca=020000607843" target="_blank">นาย ประสาน ปั้นแพทย์</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000161779		&amp;i2=6000161779&amp;ca=020000607843" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">78
+		</td><td width="15%">&nbsp;&nbsp;2025036000207694&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0125&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30246141</td>
+		<td width="13%">&nbsp;&nbsp;6000207694</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000207694		&amp;ca=020000573276" target="_blank">นาง บัวลอย ถาดทอง</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000207694		&amp;i2=6000207694&amp;ca=020000573276" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">79
+		</td><td width="15%">&nbsp;&nbsp;2025036017968752&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0094&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30245398</td>
+		<td width="13%">&nbsp;&nbsp;6017968752</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6017968752		&amp;ca=020018199183" target="_blank">นางสาว ธัญญ์รวี พัวพาณิชศุภสิน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036017968752		&amp;i2=6017968752&amp;ca=020018199183" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">80
+		</td><td width="15%">&nbsp;&nbsp;2025036000551213&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0032&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;30190915</td>
+		<td width="13%">&nbsp;&nbsp;6000551213</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000551213		&amp;ca=020000198213" target="_blank">นาง ชิต ภิญโยผล</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036000551213		&amp;i2=6000551213&amp;ca=020000198213" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">81
+		</td><td width="15%">&nbsp;&nbsp;2025036001179789&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;26/03/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0057&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;24142514</td>
+		<td width="13%">&nbsp;&nbsp;6001179789</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001179789		&amp;ca=020001198496" target="_blank">นาง มะลิ บุญทันจันที</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025036001179789		&amp;i2=6001179789&amp;ca=020001198496" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">82
+		</td><td width="15%">&nbsp;&nbsp;2025026019796348&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;27/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0379&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;5701324165</td>
+		<td width="13%">&nbsp;&nbsp;6019796348</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6019796348		&amp;ca=020020208844" target="_blank">บ.อยุธยาโฮมวิลเลจ จก.</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026019796348		&amp;i2=6019796348&amp;ca=020020208844" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">83
+		</td><td width="15%">&nbsp;&nbsp;2025026000568589&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;27/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0028&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6500292083</td>
+		<td width="13%">&nbsp;&nbsp;6000568589</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000568589		&amp;ca=020017510790" target="_blank">นาย ธนบดี หาพิกุล</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000568589		&amp;i2=6000568589&amp;ca=020017510790" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">84
+		</td><td width="15%">&nbsp;&nbsp;2025026000661860&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;27/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0004&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6602674010</td>
+		<td width="13%">&nbsp;&nbsp;6000661860</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6000661860		&amp;ca=020000020606" target="_blank">นาง ประนอม วัชนะศรี</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026000661860		&amp;i2=6000661860&amp;ca=020000020606" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">85
+		</td><td width="15%">&nbsp;&nbsp;2025026001138193&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;27/02/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0156&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;6100269784</td>
+		<td width="13%">&nbsp;&nbsp;6001138193</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001138193		&amp;ca=020000670330" target="_blank">นางสาว ภณิดา นามพลแสน</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025026001138193		&amp;i2=6001138193&amp;ca=020000670330" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	
+		<tr>
+		<td width="5%">86
+		</td><td width="15%">&nbsp;&nbsp;2025016001303538&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;28/01/2025&nbsp;&nbsp;</td>
+		<td width="10%">&nbsp;&nbsp;GWNI0186&nbsp;&nbsp;</td>
+		<td width="11%">&nbsp;&nbsp;25712237  </td>
+		<td width="13%">&nbsp;&nbsp;6001303538</td>
+
+		<td width="17%" class="peaname_td">&nbsp;&nbsp;<a href="show_stat.php?installation=6001303538		&amp;ca=020027927620" target="_blank">นาย นริศ ชมเจริญ</a>&nbsp;&nbsp;</td>
+		
+		<td width="11%" class="peaname_td"><a href="uc201_show_order_list_note2.php?i1=2025016001303538		&amp;i2=6001303538&amp;ca=020027927620" target="_blank" title="">
+		<img src="/ucube/images/search-icon.png" width="20" height="20" border="0" alt="">
+	
+	</a></td>
+		</tr>
+
+		
+
+
+			
+
+	</tbody></table>
+	</div>
+	<br><br>
+				
+							 </div>
+							 </div>
+                        </div>
+                    </div>
+                </div>
+			
+				</div>
+				</div><!-- End Page-Title  11111111111 -->
+			 </div>	
+        </div><!-- end wrapper 111111111111111111 -->
+<style>
+
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  text-align:left !important;
+  padding: 20px 0;
+  position: absolute;
+  right: 0;
+  background-color: #458AE2;
+  left: 0;
+  font-family: 'Kanit', sans-serif;
+  font-size: 18px;
+}
+</style>
+						
+  <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <font color="white">Copyright U_CUBE V.2 2019 © กองเทคโนโลยีดิจิทัลและการสื่อสาร การไฟฟ้าส่วนภูมิภาค เขต 2 (ภาคใต้) จ.นครศรีธรรมราช</font>
+						</div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+		
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <h5 class="modal-title" id="exampleModalLabel">ยืนยันการออกจากระบบ</h5>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/ucube/logout.php'">ออกจากระบบ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+				
+		
+	
+
+
+        <!-- jQuery  -->
+        <script src="/ucube/assets/js/jquery.min.js"></script>
+        <script src="/ucube/assets/js/popper.min.js"></script>
+        <script src="/ucube/assets/js/bootstrap.min.js"></script>
+        <script src="/ucube/assets/js/waves.js"></script>
+        <script src="/ucube/assets/js/jquery.slimscroll.js"></script>
+
+        <!-- App js <script src="assets/js/jquery.core.js"></script> -->
+       
+        <script src="/ucube/assets/js/jquery.app.js"></script>
+	
+</body></html>

@@ -15,16 +15,21 @@ data = data.sort_values(['ca', 'period'])
 data['month_counts'] = data.groupby('ca')['period'].transform('count')
 
 # ฟีเจอร์พื้นฐาน
-data['kwh_mean_6months'] = data.groupby('ca')['KWH_TOT'].transform(
+data['kwh_mean_6months'] = data.groupby('ca')['kwh_total'].transform(
     lambda x: x.rolling(window=6, min_periods=1).mean()
 )
+# data['violation_count_6months'] = data.groupby('ca')['inspected'].transform(
+#     lambda x: x.shift().rolling(window=6, min_periods=1).sum()
+# )
+# ใช้ย้อนหลัง 6 เดือน รวมเดือนปัจจุบัน
 data['violation_count_6months'] = data.groupby('ca')['inspected'].transform(
-    lambda x: x.shift().rolling(window=6, min_periods=1).sum()
+    lambda x: x.rolling(window=6, min_periods=1).sum()
 )
+
 data['violation_count'] = data.groupby('ca')['inspected'].transform('sum')
 
-data['kwh_max'] = data.groupby('ca')['KWH_TOT'].transform('max')
-data['kwh_min'] = data.groupby('ca')['KWH_TOT'].transform('min')
+data['kwh_max'] = data.groupby('ca')['kwh_total'].transform('max')
+data['kwh_min'] = data.groupby('ca')['kwh_total'].transform('min')
 data['kwh_max_min_ratio'] = (data['kwh_max'] - data['kwh_min']) / (data['kwh_max'] + 1e-5)
 
 def high_low_mean_diff(x):
@@ -35,10 +40,10 @@ def high_low_mean_diff(x):
         return 0
     return abs(high - low) / (low + 1e-5)
 
-data['kwh_mean_high_vs_low_ratio'] = data.groupby('ca')['KWH_TOT'].transform(high_low_mean_diff)
+data['kwh_mean_high_vs_low_ratio'] = data.groupby('ca')['kwh_total'].transform(high_low_mean_diff)
 
-data['kwh_prev'] = data.groupby('ca')['KWH_TOT'].shift(1)
-data['kwh_next'] = data.groupby('ca')['KWH_TOT'].shift(-1)
+data['kwh_prev'] = data.groupby('ca')['kwh_total'].shift(1)
+data['kwh_next'] = data.groupby('ca')['kwh_total'].shift(-1)
 data['kwh_prev_next_diff_ratio'] = np.abs(data['kwh_prev'] - data['kwh_next']) / (data['kwh_prev'] + 1e-5)
 
 data.fillna(0, inplace=True)
@@ -46,12 +51,12 @@ data.fillna(0, inplace=True)
 # 3. สร้างชุด feature 2 แบบ
 feature_sets = {
     "with_violation_count_6months": [
-        'KWH_TOT', 'kwh_mean_6months', 'violation_count_6months',
+        'kwh_total', 'kwh_mean_6months', 'violation_count_6months',
         'month_counts', 'kwh_max_min_ratio',
         'kwh_mean_high_vs_low_ratio', 'kwh_prev_next_diff_ratio'
     ],
     "with_violation_count_total": [
-        'KWH_TOT', 'kwh_mean_6months', 'violation_count',
+        'kwh_total', 'kwh_mean_6months', 'violation_count',
         'month_counts', 'kwh_max_min_ratio',
         'kwh_mean_high_vs_low_ratio', 'kwh_prev_next_diff_ratio'
     ]

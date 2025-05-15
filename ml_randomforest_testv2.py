@@ -3,27 +3,6 @@ import numpy as np
 import joblib
 from sklearn.metrics import accuracy_score, f1_score
 
-# 1. Load ข้อมูล
-file_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\data for testing01.csv'
-data = pd.read_csv(file_path, sep=';')
-
-# 2. Preprocess & Feature Engineering (ต้องเหมือนตอนฝึก)
-data['period'] = pd.to_datetime(data['period'], format='%Y%m', errors='coerce')
-data = data.sort_values(['ca', 'period'])
-data['month_counts'] = data.groupby('ca')['period'].transform('count')
-
-data['kwh_mean_6months'] = data.groupby('ca')['kwh_total'].transform(
-    lambda x: x.rolling(window=6, min_periods=1).mean()
-)
-data['violation_count_6months'] = data.groupby('ca')['inspected'].transform(
-    lambda x: x.shift().rolling(window=6, min_periods=1).sum()
-)
-data['violation_count'] = data.groupby('ca')['inspected'].transform('sum')
-
-data['kwh_max'] = data.groupby('ca')['kwh_total'].transform('max')
-data['kwh_min'] = data.groupby('ca')['kwh_total'].transform('min')
-data['kwh_max_min_ratio'] = (data['kwh_max'] - data['kwh_min']) / (data['kwh_max'] + 1e-5)
-
 def high_low_mean_diff(x):
     mean_all = x.mean()
     high = x[x > mean_all].mean()
@@ -32,48 +11,81 @@ def high_low_mean_diff(x):
         return 0
     return abs(high - low) / (low + 1e-5)
 
-data['kwh_mean_high_vs_low_ratio'] = data.groupby('ca')['kwh_total'].transform(high_low_mean_diff)
+def create_features(df):
+    df = df.sort_values(['ca', 'period'])
+    df['month_counts'] = df.groupby('ca')['period'].transform('count')
 
-data['kwh_prev'] = data.groupby('ca')['kwh_total'].shift(1)
-data['kwh_next'] = data.groupby('ca')['kwh_total'].shift(-1)
-data['kwh_prev_next_diff_ratio'] = np.abs(data['kwh_prev'] - data['kwh_next']) / (data['kwh_prev'] + 1e-5)
+    df['kwh_mean_6months'] = df.groupby('ca')['kwh_total'].transform(
+        lambda x: x.rolling(window=6, min_periods=1).mean()
+    )
+    # ใช้ย้อนหลัง 6 เดือน รวมเดือนปัจจุบัน
+    df['violation_count_6months'] = df.groupby('ca')['inspected'].transform(
+        lambda x: x.rolling(window=6, min_periods=1).sum()
+    )
 
-data.fillna(0, inplace=True)
+    # ไม่ใช้ violation_count total ใน test เพื่อเลี่ยงใช้ข้อมูลอนาคต
 
-# 3. เลือกชุดฟีเจอร์ที่ใช้ (อิงตามตอนฝึก)
-features = [
-    'kwh_total', 'kwh_mean_6months', 'violation_count',
-    'month_counts', 'kwh_max_min_ratio',
-    'kwh_mean_high_vs_low_ratio', 'kwh_prev_next_diff_ratio'
-]
-X = data[features]
-y = data['inspected']
+    df['kwh_max'] = df.groupby('ca')['kwh_total'].transform('max')
+    df['kwh_min'] = df.groupby('ca')['kwh_total'].transform('min')
+    df['kwh_max_min_ratio'] = (df['kwh_max'] - df['kwh_min']) / (df['kwh_max'] + 1e-5)
 
-# 4. Load โมเดลที่ฝึกไว้
-model_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\fraud_detection_trained_rdf_model.pkl'
-model = joblib.load(model_path)
+    df['kwh_mean_high_vs_low_ratio'] = df.groupby('ca')['kwh_total'].transform(high_low_mean_diff)
 
-# 5. ทำนายผล
-y_pred = model.predict(X)
+    df['kwh_prev'] = df.groupby('ca')['kwh_total'].shift(1)
+    df['kwh_next'] = df.groupby('ca')['kwh_total'].shift(-1)
+    df['kwh_prev_next_diff_ratio'] = np.abs(df['kwh_prev'] - df['kwh_next']) / (df['kwh_prev'] + 1e-5)
 
-# 6. ประเมินผล
-acc = accuracy_score(y, y_pred)
-f1 = f1_score(y, y_pred)
-print(f"\n📊 Evaluation on full data:")
-print(f"- Accuracy: {acc:.3f}")
-print(f"- F1 Score: {f1:.3f}")
+    df.fillna(0, inplace=True)
+    return df
 
-# Accuracy เฉพาะกรณีตรวจพบ (inspected=1)
-if (y == 1).sum() > 0:
-    acc_detected = accuracy_score(y[y == 1], y_pred[y == 1])
-    print(f"- Accuracy (detected=1 only): {acc_detected:.3f}")
+def main():
+    # 1. โหลดข้อมูลทดสอบ
+    file_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\data for testing03.csv'
+    data = pd.read_csv(file_path, sep=';')
+    data['period'] = pd.to_datetime(data['period'], format='%Y%m', errors='coerce')
 
-# 7. Export prediction
-results_df = data[['trsg','ca','installation','mru','kwh_total']].copy()
-results_df['period'] = data['period'].dt.strftime('%Y%m')
-results_df['Actual'] = y
-results_df['Predicted'] = y_pred
+    # 2. กรองข้อมูลช่วง 2024-09-01 ถึง 2025-03-31
+    test_data = data[(data['period'] >= '2024-09-01') & (data['period'] <= '2025-03-31')].copy()
 
-output_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\fraud_detection_predictions01.csv'
-results_df.to_csv(output_path, index=False)
-print(f"\n📄 Predictions exported to: {output_path}")
+    # 3. สร้างฟีเจอร์เหมือนตอน train
+    test_data = create_features(test_data)
+
+    # 4. เตรียมข้อมูล
+    features = [
+        'kwh_total', 'kwh_mean_6months', 'violation_count_6months',
+        'month_counts', 'kwh_max_min_ratio',
+        'kwh_mean_high_vs_low_ratio', 'kwh_prev_next_diff_ratio'
+    ]
+    X_test = test_data[features]
+    y_test = test_data['inspected']
+
+    # 5. โหลดโมเดล
+    model_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\fraud_detection_trained_rdf_model.pkl'
+    model = joblib.load(model_path)
+
+    # 6. ทำนายผล
+    y_pred = model.predict(X_test)
+
+    # 7. ประเมินผล
+    acc = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    print(f"Test Accuracy: {acc:.3f}")
+    print(f"Test F1 Score: {f1:.3f}")
+
+    # Accuracy เฉพาะกรณี inspected=1
+    if (y_test == 1).sum() > 0:
+        acc_detected = accuracy_score(y_test[y_test == 1], y_pred[y_test == 1])
+        print(f"Accuracy (detected=1 only): {acc_detected:.3f}")
+
+    # 8. Export ผลลัพธ์ prediction
+    results_df = test_data[['trsg','ca','installation','mru','kwh_total']].copy()
+    results_df['period'] = test_data['period'].dt.strftime('%Y%m')
+    results_df['Actual'] = y_test
+    results_df['Predicted'] = y_pred
+
+    output_path = r'D:\PEA JOB\M-BA Phase2\code\clpa\fraud_detection_predictions_test.csv'
+    results_df.to_csv(output_path, index=False)
+    print(f"Predictions exported to: {output_path}")
+
+if __name__ == "__main__":
+    main()
